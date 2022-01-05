@@ -4,83 +4,146 @@
 <body>
   <head>
     <title>
-      ******************************DOCKER*****************************
+      ****DOCKER****
     </title>
   </head>
+  <nav class="navbar background">
+        <ul class="nav-list">
+            <div class="logo">
+                <img src="logo.png">
+            </div>
+            <li><a href="#intro">Docker</a></li>
+            <li><a href="#commands">Commands</a></li>
+        </ul>
 
-  <h1 >Main Command:  docker [OPTIONS] COMMAND </h1>
+       <div class="rightNav">
+           <input type="text" name="search" id="search">
+           <button class="btn btn-sm">Search</button>
+       </div>
+   </nav>
+   <h1> Welcome to Docker </h1>
+   <section class="firstsection">
+        <div class="box-main">
+            <div class="firstHalf">
+                <h1 class="text-big" id="web">
+                    DOCKER
+                </h1>
 
-  docker pull "image name"/ docker image pull "image name" -> Pull images from docker hub
+                <p class="text-small">
+                    Docker is an open platform for developing, shipping,
+                    and running applications. Docker enables you to separate
+                    your applications from your infrastructure so you can
+                    deliver software quickly. With Docker, you can manage
+                    your infrastructure in the same ways you manage your
+                    applications. By taking advantage of Docker’s methodologies
+                    for shipping, testing, and deploying code quickly,
+                    you can significantly reduce the delay between writing
+                    code and running it in production.
+                </p>
+            </div>
+        </div>
+    </section>
 
-  docker images/ docker image ls -> Check the list of pulled images
+    <section class="secondsection">
+        <div class="box-main">
+            <div class="secondHalf">
+                <h1 class="text-big" id="program">
+                    COMMANDS
+                </h1>
+                <p class="text-small">
+                  Main Command:  docker [OPTIONS] COMMAND
 
-  docker rmi "image name" -> Remove the image from the list
+                  docker pull "image name"/ docker image pull "image name" -> Pull images from docker hub
 
-  docker rmi -f "image_ID" -> Force delete an image even when it is running
+                  docker images/ docker image ls -> Check the list of pulled images
 
-  docker image history "image name" ->  Show image history
+                  docker rmi "image name" -> Remove the image from the list
 
-  docker run "image name" -> create a container
+                  docker rmi -f "image_ID" -> Force delete an image even when it is running
 
-  docker rm "container ID/name" -> Remove a container
+                  docker image history "image name" ->  Show image history
 
-  docker run -it "imagename" "controller shell" -> To run in bin/bash or bin/sh
-  (default is bin/sh)
+                  docker run "image name" -> create a container
 
-  Bin/sh and Bin/bash
+                  docker rm "container ID/name" -> Remove a container
 
-  "bash and sh are two different shells. Basically bash is sh, with more features and better syntax.
-  Most commands work the same, but they are different."
+                  docker run -it "imagename" "controller shell" -> To run in bin/bash or bin/sh
+                  (default is bin/sh)
 
-  #!bin/sh or bin/bash -> Shebang
+                  Bin/sh and Bin/bash
 
-  bin/bash is most commonly used -> more features
-  bin/sh is short form or symbolic to bin/bash -> less features
+                  "bash and sh are two different shells. Basically bash is sh, with more features and better syntax.
+                  Most commands work the same, but they are different."
 
-  docker login -> logs into docker
+                  #!bin/sh or bin/bash -> Shebang
 
-  docker logoff -> logs off docker
+                  bin/bash is most commonly used -> more features
+                  bin/sh is short form or symbolic to bin/bash -> less features
 
-  exit / Ctrl pq -> exits the container
+                  docker login -> logs into docker
 
-  docker exec -it "container ID/name" -> To get into the container
+                  docker logoff -> logs off docker
 
-  docker images -> docker run -> docker start -> docker exec -it "container name"
+                  exit / Ctrl pq -> exits the container
 
-  docker rename "old_cname" "new_cname" -> To change the name of the container
+                  docker exec -it "container ID/name" -> To get into the container
 
-  docker container rename "container_id" "new_name" -> To change the name of container
+                  docker images -> docker run -> docker start -> docker exec -it "container name"
 
-  docker run --name "name" "image ID" -> To name a container while creating
+                  docker rename "old_cname" "new_cname" -> To change the name of the container
 
-  docker image prune -> Remove all dangling images
+                  docker container rename "container_id" "new_name" -> To change the name of container
 
-  docker ps -a "or" docker container ls -> Used to check the containers
+                  docker run --name "name" "image ID" -> To name a container while creating
 
-  docker ps -> used to check only the active containers
+                  docker image prune -> Remove all dangling images
 
-  docker container stats "c_ID" -> shows the statistics of the container
+                  docker ps -a "or" docker container ls -> Used to check the containers
 
-  docker container pause "c_ID" -> pauses the docker container
+                  docker ps -> used to check only the active containers
 
-  docker container unpause "c_ID" -> unpauses the docker container
+                  docker container stats "c_ID" -> shows the statistics of the container
 
-  Local tag:
+                  docker container pause "c_ID" -> pauses the docker container
 
-  docker image tag "source_image_name" "new_name" -> creates a copy of the existing image on local host
+                  docker container unpause "c_ID" -> unpauses the docker container
 
-  Remote tag:
+                  Local tag:
 
-  docker image tag "source image name" "new_name" -> creates a copy of the existing image on local host or on docker hub
+                  docker image tag "source_image_name" "new_name" -> creates a copy of the existing image on local host
 
-  Remote tag always requires a login
+                  Remote tag:
 
-  docker push "image name: tag" -> push the image to docker hub
+                  docker image tag "source image name" "new_name" -> creates a copy of the existing image on local host or on docker hub
 
-  docker image inspect "image_ID" -> image inspection
+                  Remote tag always requires a login
 
-  docker login -u "username" -p "password" -> one line command, unsecure
+                  docker push "image name: tag" -> push the image to docker hub
 
-  --------------------------------------------------------------------------
+                  docker image inspect "image_ID" -> image inspection
 
+                  docker login -u "username" -p "password" -> one line command, unsecure
+
+                  --------------------------------------------------------------------------
+                </p>
+
+
+            </div>
+        </div>
+    </section>
+
+    <div class="thumbnail">
+          <img src="homepage-docker-logo.png">
+    </div>
+
+
+    <footer class="background">
+        <p class="text-footer">
+            Copyright ©-All rights are reserved
+        </p>
+
+
+    </footer>
 </body>
+
+</html>
