@@ -3,14 +3,180 @@
 
 <body>
   <head>
-    <title>
-      ****DOCKER****
-    </title>
-  </head>
+    <title>DOCKER</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: sticky;
+        cursor: pointer;
+        top: 0;
+		  }
+
+		  .background {
+        background: #FFFFFF;
+        background-size: cover;
+		  	background-blend-mode: darken;
+		    }
+
+		  .nav-list {
+        width: 80%;
+        align-items: center;
+        display: flex;
+		   }
+
+       .logo {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+       }
+
+       .logo img {
+         border-radius: 50px;
+         width: 180px;
+       }
+
+       .nav-list li {
+         padding: 26px 30px;
+         list-style: none;
+       }
+
+       .nav-list li a {
+         text-decoration: none;
+         color: #000000
+       }
+
+       .nav-list li a:hover {
+         color: #000000;
+       }
+
+       .rightnav {
+         width: 30%;
+         text-align: right;
+       }
+
+       #search {
+         padding: 5px;
+         font-size: 17px;
+         border: 2px solid #808080;
+         border-radius: 9px;
+       }
+
+       .firstsection {
+         background-color: #808080;
+         height: 400px;
+       }
+
+       .secondsection {
+         background-color: #808080;
+         height: 800px;
+       }
+
+       .box-main {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         color: #000000;
+         max-width: 80%;
+         margin: auto;
+         height: 80%;
+       }
+
+       .firsthalf {
+         width: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+       }
+
+       .secondhalf {
+         width: 30%;
+       }
+
+       .secondhalf img {
+         width: 70%;
+         border: 4px solid #FFFFFF;
+         border-radius: 150px;
+         display: block;
+         margin: auto;
+       }
+
+       .text-big {
+         font-family: 'Harlow Solid Italic', serif;
+         font-weight: bold;
+         font-size: 35px;
+       }
+
+       .text-small {
+         font-size: 18px;
+       }
+
+       .btn {
+         padding: 8px 20px;
+         margin: 7px 0;
+         border: 2px solid #FFFFFF;
+         border-radius: 8px;
+         background: none;
+         color: white;
+         cursor: pointer;
+       }
+
+       .btn-sm {
+         padding: 6px 10px;
+         vertical-align: middle;
+       }
+
+       .section {
+         height: 400px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         max-width: 90%;
+         margin: auto;
+       }
+
+       .section-Left {
+         flex-direction: row-reverse;
+       }
+
+       .paras {
+         padding: 0px 65px;
+       }
+
+       .thumbnail img {
+         width: 250px;
+         border: 2px solid #00FF00;
+         border-radius: 26px;
+         margin-top: 19px;
+       }
+
+       .center {
+         text-align: center;
+       }
+
+       .text-footer {
+         text-align: center;
+         padding: 30px 0;
+         font-family: 'Amasis MT Pro Medium', sans-serif;
+         display: flex;
+         justify-content: center;
+         color: #FFFFFF;
+       }
+
+     </style>
+</head>
+
   <nav class="navbar background">
         <ul class="nav-list">
-            <div class="logo">
-                <img src="logo.png">
+            <div class="docker-logo">
+                <img src="docker-logo.jpg">
             </div>
             <li><a href="#intro">Docker</a></li>
             <li><a href="#commands">Commands</a></li>
@@ -55,93 +221,86 @@
                     COMMANDS
                 </h1>
                 <p class="text-small">
-                  Main Command:  docker [OPTIONS] COMMAND
+                  Main Command:  docker [OPTIONS] COMMAND <hr><hr>
 
-                  docker pull "image name"/ docker image pull "image name" -> Pull images from docker hub
+                  docker pull "image name"/ docker image pull "image name" -> Pull images from docker hub <hr>
 
-                  docker images/ docker image ls -> Check the list of pulled images
+                  docker images/ docker image ls -> Check the list of pulled images <hr>
 
-                  docker rmi "image name" -> Remove the image from the list
+                  docker rmi "image name" -> Remove the image from the list <hr>
 
-                  docker rmi -f "image_ID" -> Force delete an image even when it is running
+                  docker rmi -f "image_ID" -> Force delete an image even when it is running <hr>
 
-                  docker image history "image name" ->  Show image history
+                  docker image history "image name" ->  Show image history <hr>
 
-                  docker run "image name" -> create a container
+                  docker run "image name" -> create a container <hr>
 
-                  docker rm "container ID/name" -> Remove a container
+                  docker rm "container ID/name" -> Remove a container <hr>
 
-                  docker run -it "imagename" "controller shell" -> To run in bin/bash or bin/sh
-                  (default is bin/sh)
+                  docker run -it "imagename" "controller shell" -> To run in bin/bash or bin/sh (default is bin/sh) <hr>
 
-                  Bin/sh and Bin/bash
+                  <h6> Bin/sh and Bin/bash: </h6><hr>
 
                   "bash and sh are two different shells. Basically bash is sh, with more features and better syntax.
                   Most commands work the same, but they are different."
 
-                  #!bin/sh or bin/bash -> Shebang
+                  #!bin/sh or bin/bash -> Shebang <hr>
 
-                  bin/bash is most commonly used -> more features
-                  bin/sh is short form or symbolic to bin/bash -> less features
+                  bin/bash is most commonly used -> more features <hr>
+                  bin/sh is short form or symbolic to bin/bash -> less features <hr>
 
-                  docker login -> logs into docker
+                  docker login -> logs into docker <hr>
 
-                  docker logoff -> logs off docker
+                  docker logoff -> logs off docker <hr>
 
-                  exit / Ctrl pq -> exits the container
+                  exit / Ctrl pq -> exits the container <hr>
 
-                  docker exec -it "container ID/name" -> To get into the container
+                  docker exec -it "container ID/name" -> To get into the container <hr>
 
-                  docker images -> docker run -> docker start -> docker exec -it "container name"
+                  docker images -> docker run -> docker start -> docker exec -it "container name" <hr>
 
-                  docker rename "old_cname" "new_cname" -> To change the name of the container
+                  docker rename "old_cname" "new_cname" -> To change the name of the container <hr>
 
-                  docker container rename "container_id" "new_name" -> To change the name of container
+                  docker container rename "container_id" "new_name" -> To change the name of container <hr>
 
-                  docker run --name "name" "image ID" -> To name a container while creating
+                  docker run --name "name" "image ID" -> To name a container while creating <hr>
 
-                  docker image prune -> Remove all dangling images
+                  docker image prune -> Remove all dangling images <hr>
 
-                  docker ps -a "or" docker container ls -> Used to check the containers
+                  docker ps -a "or" docker container ls -> Used to check the containers <hr>
 
-                  docker ps -> used to check only the active containers
+                  docker ps -> used to check only the active containers <hr>
 
-                  docker container stats "c_ID" -> shows the statistics of the container
+                  docker container stats "c_ID" -> shows the statistics of the container <hr>
 
-                  docker container pause "c_ID" -> pauses the docker container
+                  docker container pause "c_ID" -> pauses the docker container <hr>
 
-                  docker container unpause "c_ID" -> unpauses the docker container
+                  docker container unpause "c_ID" -> unpauses the docker container <hr>
 
-                  Local tag:
+                  <h6>Local tag: </h6><hr>
 
-                  docker image tag "source_image_name" "new_name" -> creates a copy of the existing image on local host
+                  docker image tag "source_image_name" "new_name" -> creates a copy of the existing image on local host <hr>
 
-                  Remote tag:
+                  <h6>Remote tag: </h6><hr>
 
-                  docker image tag "source image name" "new_name" -> creates a copy of the existing image on local host or on docker hub
+                  docker image tag "source image name" "new_name" -> creates a copy of the existing image on local host or on docker hub <hr>
 
-                  Remote tag always requires a login
+                  Remote tag always requires a login <hr>
 
-                  docker push "image name: tag" -> push the image to docker hub
+                  docker push "image name: tag" -> push the image to docker hub <hr>
 
-                  docker image inspect "image_ID" -> image inspection
+                  docker image inspect "image_ID" -> image inspection <hr>
 
-                  docker login -u "username" -p "password" -> one line command, unsecure
-
-                  --------------------------------------------------------------------------
-                </p>
-
+                  docker login -u "username" -p "password" -> one line command, unsecure <hr>
 
             </div>
         </div>
     </section>
 
-
     <footer class="background">
         <p class="text-footer">
             Copyright ©-All rights are reserved
         </p>
-
 
     </footer>
 </body>
