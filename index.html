@@ -1,1 +1,500 @@
-"Hi. This is my test website" > index.html
+******************************DOCKER*****************************
+
+Main Command:  docker [OPTIONS] COMMAND
+
+docker pull "image name"/ docker image pull "image name" -> Pull images from docker hub
+
+docker images/ docker image ls -> Check the list of pulled images
+
+docker rmi "image name" -> Remove the image from the list
+
+docker rmi -f "image_ID" -> Force delete an image even when it is running
+
+docker image history "image name" ->  Show image history
+
+docker run "image name" -> create a container
+
+IMAGES - > Put in the CONTAINERS
+
+(OS)                   (PC/Machines)
+
+maven                   docker run image ID for maven
+python                  docker run image ID for python
+ubuntu                  docker run image ID for ubuntu
+
+docker rm "container ID/name" -> Remove a container
+
+docker run -it "imagename" "controller shell" -> To run in bin/bash or bin/sh
+(default is bin/sh)
+
+Bin/sh and Bin/bash
+
+bash and sh are two different shells. Basically bash is sh, with more features and better syntax.
+Most commands work the same, but they are different.
+
+#!bin/sh or bin/bash -> Shebang
+
+bin/bash is most commonly used -> more features
+bin/sh is short form or symbolic to bin/bash -> less features
+
+docker login -> logs into docker
+
+docker logoff -> logs off docker
+
+exit / Ctrl pq -> exits the container
+
+docker exec -it "container ID/name" -> To get into the container
+
+docker images -> docker run -> docker start -> docker exec -it "container name"
+
+docker rename "old_cname" "new_cname" -> To change the name of the container
+
+docker container rename "container_id" "new_name" -> To change the name of container
+
+docker run --name "name" "image ID" -> To name a container while creating
+
+docker image prune -> Remove all dangling images
+
+docker ps -a "or" docker container ls -> Used to check the containers
+
+docker ps -> used to check only the active containers
+
+docker container stats "c_ID" -> shows the statistics of the container
+
+docker container pause "c_ID" -> pauses the docker container
+
+docker container unpause "c_ID" -> unpauses the docker container
+
+Local tag:
+
+docker image tag "source_image_name" "new_name" -> creates a copy of the existing image on local host
+
+Remote tag:
+
+docker image tag "source image name" "new_name" -> creates a copy of the existing image on local host or on docker hub
+
+Remote tag always requires a login
+
+docker push "image name: tag" -> push the image to docker hub
+
+docker image inspect "image_ID" -> image inspection
+
+docker login -u "username" -p "password" -> one line command, unsecure
+
+--------------------------------------------------------------------------
+
+How Images are generated:  (Docker Build)
+
+Lines of code in Dockerfile -> Each line of code is called instruction
+
+Instructions are executed sequentially (line-by-line)
+
+If any line fails, then the image will not be generated
+
+If all lines are successful, then the image will be generated
+
+If the image is generated, then there will be a unique ID for each image
+
+
+DOCKER IMAGE BUILD PROCESS:
+
+Task -> create an image (operating system/tool/application)
+
+Solution:
+
+Local host -> Coding (in Dockerfile) -> Build (mention path of the dockerfile) -> image created (ID) -> Tag (local/remote) -> push it to remote repository (docker hub)
+
+Dockerfile does not have any extension
+
+1. touch command -> only create a file
+2. vim command -> not create a file, but it will open an empty file-> save
+3. pico command -> not create a file, but it will open an empty file-> save
+4. nano command -> not create a file, but it will open an empty file-> save
+5. vi command (short form of vim)-> not create a file, but it will open an empty file-> save
+6. cat command -> cat will show the contents in the file
+
+STEPS TO CREATE AN IMAGE:
+
+1. Create a folder -> project
+2. Create a file and save the file -> Dockerfile
+3. Code the Dockerfile (write the instructions)
+4. Build the Dockerfile
+5. Check if the image is created -> docker images/ docker image ls
+6. Login to docker
+7. Tagging (docker image build -t newimagename dockerID/imagename)
+8. Push
+
+Tagging:
+docker build /home/ec2-user/Gitinstall -> Build an image with the local tag as <none>
+docker build . -> Build an image with the local tag as <none>
+
+docker build -t ponnuvel /home/ec2-user/Gitinstall -> local tag as ponnuvel
+docker build -t ponnuvel . -> local tag as ponnuvel
+
+docker build -t joe2061/hello . -> remote tagging
+
+
+Cloud -> 3 categories -> IAAS (Infrastructure as a service), PAAS (Platform as a service), and SAAS (Software as a service)
+
+Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries and configuration files; they can communicate with each other through well-defined channels.
+
+DOCKER INSTRUCTIONS:
+
+1. FROM
+2. MAINTAINER
+3. RUN
+4. CMD
+5. LABEL
+6. COPY
+7. ADD
+8. USER
+9. WORKDIR
+10. ENV
+
+
+11. ONBUILD
+12. STOPSIGNAL
+13. ENTRYPOINT
+14. ARG
+15. VOLUME
+
+FROM -> Example: folder -> centos:centos7
+Ex: FROM centos:centos7
+
+MAINTAINER -> Author of the generated image
+Ex: MAINTAINER ponnuvel@gmail.com
+
+RUN -> Execution of commands in a new layer on top of current image
+Creating another image on top of base image -> Executing instructions
+Run binds application inside the image. (Critical Instruction)
+Binding - Adding application files
+Ex: RUN yum install -y git
+
+CMD -> After installation if you want to start, stop, run a service
+Ex: CMD service git start
+
+LABEL -> Adds metadata into an image
+Docker objects: Containers, Images, Volumes
+What is a metadata: files that associate to docker objects that are packed
+Label: any information you may want to write
+
+Ex:
+FROM centos
+MAINTAINER ponnuvel
+RUN yum install git
+CMD service git start
+LABEL "Git installation"
+
+
+COPY: Copys files (replica) inside the container
+It helps to copy a "file" from docker host to image and vice versa
+It helps to copy a "file" from one location to another (files can be copied between the directories(pwd))
+COPY /home/ec2-user/project /home/ec2-user/project1
+In copy, we cannot use URL in the source
+
+ADD: It helps to copy a "file/URL" from docker host to image and vice versa inside the container
+It helps to copy a "file/URL" from one location to another (files can be copied between the directories(pwd))
+In add, we can specify URL in the source
+ADD https://github.com/joshuajosephjefries/dockerimages.git /home/ec2-user/project
+
+USER: Sets the user ID while running the image (root/ normal user)
+
+WORKDIR: Working directory
+
+ENV: Sets an Enviroment variable
+For any application, we have env variables (path)
+Installation-> Ask if you want to add the path to environment variables
+Windows -> Windows exe needs to know which application is in which path
+How does it know: It knows by using env variables
+What we do in env variables: We add the path
+How do we add: Windows -> Environment variables
+	       Docker -> Dockerfile
+	       Linux -> Commands
+ENV uses key value pair
+Key is the name of the directory
+Value is the directory path
+
+ONBUILD: Adds an instruction to be executed later, when the image is used as the base for another build
+Dockerfile-> Write instructions -> Save -> Build -> Image ID or image
+Creating a container -> using the Image ID generated -> the instructions can be used
+
+STOPSIGNAL: To send the stop signal to the host machine from the dockerfile.
+Ex: STOPSIGNAL "signalname/unassigned number"
+Ex: docker run -it 964487a559fe --stop-signal
+
+ENTRYPOINT:At the time of execution, the container configuration is done
+Exec-> ENTRYPOINT ["command", "arg1", "arg2"]
+Shell-> ENTRYPOINT command arg1 arg2
+
+VOLUME: For storage. Creates a mount point for different volumes(memory)
+Ex:
+FROM ubuntu
+RUN mkdir /myvol
+RUN echo "hello world" > /myvol/greeting
+VOLUME /myvol
+
+ARG: Arguments defines a variable that users can pass at build-time to the builder using --build-arg
+Preassignment of a value to an argument reduces the repeats.
+Ex:  docker build --build-arg HTTPS_PROXY=https://my-proxy.example.com/ejgsbdgjsdbgjsdbgfjsdbgjsdbpsbjasdbljsdbjhsdhsdb
+
+
+
+HOMEWORK:
+1. Create an image inside a container.
+    AWS               and     Oracle VMBox
+Permissions (Cloud)           VMBox(No Permissions) (Installed in our system)
+Ans: Yes. Privileged access -> docker run --privileged -it "ImageID" /bin/bash -> Create a privileged container
+Computer -> Base image (Windows) -> supporting files for window
+Virtualized platform (AWS/VMBox) -> operating system (Linux) -> supporting files for linux -> Overlay file system
+Virtualized system inside virtualized system -> operating system(Linux) -> supporting files for linux -> Overlay fs supporting files
+Podman -> daemon which controls all the API interaction between docker client and docker host
+Go to /etc/containers/storage.conf
+mount_program = "/usr/bin/fuse-overlayfs"
+Windows -> Centos -> Centos -> Centos -> amazonlinux
+
+
+2. docker run -it 964487a559fe --stop-signal -> From terminal
+Ans: stop signal will only send an SIGTERM alert to the container or application to stop.
+
+3. Entrypoint
+
+
+
+*********PROJECT********
+
+TASK: Create a website with Docker Compose, Flask framework and Redis to maintain hit count of the website
+
+Requirements:
+1. Install docker
+   yum install docker -> Installation of docker
+   docker --version -> Checking the docker version
+2. Docker compose -(https://docs.docker.com/compose/install/#alternative-install-options)
+   pip3 install docker-compose -> Installing docker-compose
+   chmod +x /usr/local/bin/docker-compose -> Adding permissions to the file called docker-compose
+   ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose -> Link the path name
+   docker-compose --version -> Check the docker-compose version
+3. Python -> Defaultly installed on all linux machines
+4. Redis -> Open source that is a database for in-memory data structure storage
+
+SETUP:
+
+1. Create a directory called composetest -> mkdir composetest
+2. Get inside the folder -> cd composetest
+3. Create a file in the folder called app.py -> touch app.py, nano app.py, vim app.py, vi app.py
+4. Writing code inside app.py
+
+import time # Importing a library called time
+import redis # Importing a library called redis
+import flask # Importing a library called flask (Flask class)
+
+app = flask.Flask(__name__)
+cache = redis.Redis(host='redis', port=6379)
+
+def get_hit_count():
+    retries = 10
+    while True:
+        try:
+            return cache.incr('hits')
+        except redis.exceptions.ConnectionError as exc:
+            if retries == 0:
+                raise exc
+            retries -= 1
+            time.sleep(0.5)
+
+@app.route('/')
+def hello():
+    count = get_hit_count()
+    return 'Hello World! I have been seen {} times.\n'.format(count)
+    return "Hi. My name is Joseph Jefries and I am learning DevOps"
+
+5. Create a file called requirements.txt. Write redis and flask in the requirements.txt
+
+6. Create a Dockerfile
+
+FROM python:3.7-alpine
+WORKDIR /code
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+RUN apk add --no-cache gcc musl-dev linux-headers
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+EXPOSE 5000
+COPY . .
+CMD ["flask", "run"]
+
+Installing python alpine version on linux -> apk
+
+    Build an image starting with the Python 3.7 image.
+    Set the working directory to /code.
+    Set environment variables used by the flask command.
+    Install gcc and other dependencies
+    Copy requirements.txt and install the Python dependencies.
+    Add metadata to the image to describe that the container is listening on port 5000
+    Copy the current directory . in the project to the workdir . in the image.
+    Set the default command for the container to flask run.
+
+7. Create a file called docker-compose.yml
+
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+  redis:
+    image: "redis:alpine"
+
+8. Run the docker-compose -> docker-compose up
+
+9. Open another EC2 instance and check with the webpage
+
+10. Download lynx or w3m to view the webpage
+
+------------------------------------------------------------------------------------------------
+
+IMPORTANT POINTS:
+
+1. In ubuntu, the default controller shell is sh. To use bash shell, we need to install bash.
+Command to install bash: apk add bash
+
+2. To quit the container without exiting, try Ctrl+PQ
+
+3. To get into the container we have to use docker attach CID or docker exec CID
+
+4. To create a container in privileged mode use the below command
+Command: docker run --privileged -it CID "controller shell"
+
+5. We can create a container using dockerfile or using yml. YML is used for docker compose. Docker file is used for docker build.
+
+6. In order to copy a file from your machine to the container, we can use COPY
+
+7. We can create the file and move it to a container during the build process, however, we will not know the source location of the file as the intermediate container is deleted.
+
+Ex:
+[root@ip-172-31-19-68 mock]# docker build .
+Sending build context to Docker daemon  4.096kB
+Step 1/5 : FROM centos
+ ---> 5d0da3dc9764
+Step 2/5 : MAINTAINER josephjefries14@gmail.com
+ ---> Using cache
+ ---> 2018bacb7216
+Step 3/5 : LABEL This is an image for COPY instruction
+ ---> Using cache
+ ---> ac1adef13a04
+Step 4/5 : CMD echo "Hi, my name is joseph" > /home/index.html
+ ---> Running in 225ae1176602
+Removing intermediate container 225ae1176602
+ ---> c4b2d1406662
+Step 5/5 : CMD pwd
+ ---> Running in 69043c3300f3
+Removing intermediate container 69043c3300f3
+ ---> 9a2fa6285bf9
+Successfully built 9a2fa6285bf9
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+Links:
+
+1. Play with docker: https://labs.play-with-docker.com/
+
+2. Docker community help: https://dockerlabs.collabnix.com/
+
+3. Docker github files: https://github.com/collabnix/dockerlabs
+
+4. Docker Labs: https://github.com/collabnix/dockerlabs/tree/master/workshop/docker
+
+5. Docker basic commands: https://slides.com/sangambiradar/the-ultimate-docker-cheatsheet-for-everyone-2022/fullscreen#/32
+
+
+*************************ANSIBLE********************************
+
+Ansible is written in python language.
+We can create yml files using ansible.
+
+Ansible is a configuration management tool.
+
+Agile -> SCCM (System Center Configuration Management) -> Update software/ push software / patch updates
+
+Ansible is "agentless", using SSH to push changes from a single source to multiple remote resources.... Each play consists of a sequence of "tasks" that launch small programs called "modules" on a specified set of resources in your environment.
+Ansible is a radically simple IT automation engine that automates cloud provisioning, configuration management, application deployment, intra-service orchestration, and many other IT needs.
+
+Agentless -> s/w is installed only on server side
+Agent based -> s/w is installed on both the server and the client.
+
+Pull -> server <---- client
+Push -> server ----> client
+
+Ansible works on push mechanism.
+Writing yml scripts on the server and pushing it to the client.
+
+Puppet, Chef works on pull mechanism.
+Writing scripts on the server and pulling it by the client.
+
+
+172.31.91.14 -> Private
+
+100.24.60.45 -> Public
+
+54.165.244.169 -> Public IP
+
+Private IP is organizational IP. 142.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4 2 1
+r w x
+
+chmod ugo file_name
+
+chmod 7 /usr/bin/docker-compose
+chmod 741 /usr/bin/docker-compose
+
+user - 7 rwx
+group - 4 r
+other - 1 x
+
+
+chmod 777 /usr/bin/docker-compose
+Full access
+
+chmod 467 myfile.txt
+
+user - read
+group - read and write
+others - full access
+
+drwxr-xr-x ->
+users: rwx -> 7
+group: rx -> 5
+others: rx -> 5
+
+chmod 444 alliance
+
+
+
+
+
+Create a website -> Upload all the material
+
+
+
+
+FROM alpine:3.5
+RUN apk update
+RUN apk add git
+RUN apk add gi
